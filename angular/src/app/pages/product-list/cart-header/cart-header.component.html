@@ -1,0 +1,35 @@
+<ng-container *ngIf="cart$ | async as cart">
+  <button class="cart-toggle" (click)="cartOpen = !cartOpen">
+    🛒
+    <span>({{totalItems}})</span>
+    <span style="margin-left: 5px; font-weight: bold">${{ totalPrice | number:'1.2-2' }}</span>
+  </button>
+
+  <div class="cart-dropdown" *ngIf="cartOpen">
+    <h3>Your Cart</h3>
+    <div *ngIf="cart && cart.length > 0; else emptyCart">
+      <div *ngFor="let item of cart" class="cart-item">
+        <img [src]="item?.image" alt="{{ item?.title }}" />
+        <div class="cart-info">
+          <div class="title">{{ item?.title }}</div>
+          <div class="controls">
+            <button class="control-button" (click)="changeQuantity(item.id, -1)">-</button>
+            <span>{{ item?.quantity }}</span>
+            <button class="control-button" (click)="changeQuantity(item.id, 1)">+</button>
+            <button class="control-button" (click)="removeFromCart(item.id)" style="margin-left: auto">Remove</button>
+          </div>
+          <div class="total-price">
+            ${{ item.price * item.quantity | number:'1.2-2' }}
+          </div>
+        </div>
+      </div>
+      <div class="cart-total">
+        Total: ${{ totalPrice | number:'1.2-2' }}
+      </div>
+    </div>
+
+    <ng-template #emptyCart>
+      <p>Your cart is empty.</p>
+    </ng-template>
+  </div>
+</ng-container>

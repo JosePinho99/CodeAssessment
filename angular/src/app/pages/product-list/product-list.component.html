@@ -1,0 +1,41 @@
+<div class="header">
+  <div style="display: flex; align-items: center; flex-wrap: wrap">
+    <h2 style="margin-right: 10px">Product List</h2>
+    <select [formControl]="categoryControl" class="category-filter">
+      <option *ngFor="let category of (categories$ | async)" [value]="category">
+        {{ category }}
+      </option>
+    </select>
+  </div>
+  <app-cart-header></app-cart-header>
+</div>
+
+
+<div class="product-list">
+  <div class="product-row" *ngFor="let product of ((products$ | async) || skeletonItems)">
+    <div [skeleton]="loading" class="image-container">
+      <img *ngIf="!loading" [src]="product?.image" alt="{{ product?.title }}" />
+    </div>
+    <div class="info-container">
+      <div [skeleton]="loading" class="product-title">{{ product?.title }}</div>
+      <div class="price-rating">
+        <span [skeleton]="loading" class="price">${{ product?.price }}</span>
+
+        <div *ngIf="!loading" class="cart-actions">
+          <ng-container *ngIf="getCartQuantity(product.id) > 0; else addButton">
+            <button class="control-button" (click)="changeQuantity(product.id, -1)">-</button>
+            <span>{{ getCartQuantity(product.id) }}</span>
+            <button class="control-button" (click)="changeQuantity(product.id, 1)">+</button>
+            <button class="control-button" (click)="removeFromCart(product.id)">Remove</button>
+          </ng-container>
+          <ng-template #addButton>
+            <button class="control-button" (click)="addToCart(product)">Add to Cart</button>
+          </ng-template>
+        </div>
+
+        <span [skeleton]="loading" class="rating">{{ product?.rating?.rate || 'N/A' }}⭐</span>
+      </div>
+    </div>
+
+  </div>
+</div>
