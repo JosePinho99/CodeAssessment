@@ -1,6 +1,7 @@
 # CodeAssessment
 
 This is a simple Angular project developed as part of a coding challenge.
+Project url: https://josepinho99.github.io/CodeAssessment/
 
 ## Overview
 
