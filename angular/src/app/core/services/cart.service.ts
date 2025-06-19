@@ -1,6 +1,7 @@
 import {CartItem} from '../../models/cart-item.model';
 import {BehaviorSubject} from 'rxjs';
 import {Injectable} from '@angular/core';
+import {Product} from '../../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class CartService {
     return this.cartSubject.value;
   }
 
-  addToCart(item: Omit<CartItem, 'quantity' | 'addedAt'>) {
+  addToCart(item: Product) {
     const existing = this.cart.find(ci => ci.id === item.id);
     let updated: CartItem[];
 

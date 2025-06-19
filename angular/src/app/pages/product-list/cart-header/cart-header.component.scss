@@ -15,6 +15,12 @@
   cursor: pointer;
   position: relative;
   z-index: 10;
+
+  .price {
+    display: none;
+    font-weight: bold;
+    margin-left: 5px;
+  }
 }
 
 .cart-dropdown {
@@ -76,4 +82,14 @@
   text-align: right;
   margin-top: 1rem;
   font-size: 1rem;
+}
+
+
+
+@media (min-width: 48rem) {
+  .cart-toggle {
+    .price {
+      display: inline-block;
+    }
+  }
 }

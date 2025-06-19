@@ -38,8 +38,6 @@ export class ProductListComponent implements OnInit {
   products$: Observable<Product[]> = of();
   categories$: Observable<string[]> = of();
   loading: boolean = true;
-  cartOpen: boolean = false;
-
 
 
   ngOnInit() {
@@ -68,7 +66,7 @@ export class ProductListComponent implements OnInit {
     this.cartService.removeFromCart(id)
   }
 
-  addToCart(product: any) {
+  addToCart(product: Product) {
     this.cartService.addToCart(product);
   }
 }

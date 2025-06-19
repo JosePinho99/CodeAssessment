@@ -1,8 +1,6 @@
 <ng-container *ngIf="cart$ | async as cart">
   <button class="cart-toggle" (click)="cartOpen = !cartOpen">
-    🛒
-    <span>({{totalItems}})</span>
-    <span style="margin-left: 5px; font-weight: bold">${{ totalPrice | number:'1.2-2' }}</span>
+    🛒 {{totalItems}} <span class="price">${{ totalPrice | number:'1.2-2' }}</span>
   </button>
 
   <div class="cart-dropdown" *ngIf="cartOpen">
