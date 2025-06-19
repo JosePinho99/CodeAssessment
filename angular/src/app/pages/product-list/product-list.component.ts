@@ -32,8 +32,6 @@ export class ProductListComponent implements OnInit {
 
   skeletonItems = Array(5).fill({});
 
-  cart$!: Observable<CartItem[]>;
-
   categoryControl: FormControl<string> = new FormControl<string>('',{ nonNullable: true });
   products$: Observable<Product[]> = of();
   categories$: Observable<string[]> = of();
@@ -41,7 +39,6 @@ export class ProductListComponent implements OnInit {
 
 
   ngOnInit() {
-    this.cart$ = this.cartService.cart$;
     this.categories$ = this.productsService.getCategories();
     this.products$ = this.categoryControl.valueChanges.pipe(
       startWith(''),
