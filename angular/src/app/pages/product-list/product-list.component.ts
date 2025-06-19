@@ -1,28 +1,24 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductsService} from '../../core/services/products.service';
 import {Product} from '../../models/product.model';
-import {AsyncPipe, CurrencyPipe, DecimalPipe, NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
+import {AsyncPipe,  NgForOf, NgIf} from '@angular/common';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {finalize, Observable, of, startWith, switchMap, tap} from 'rxjs';
-import {LoadingDirective} from '../../core/directives/loading.directive';
-import {CartItem} from '../../models/cart-item.model';
 import {CartService} from '../../core/services/cart.service';
 import {CartHeaderComponent} from './cart-header/cart-header.component';
+import {SkeletonDirective} from '../../core/directives/loading.directive';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
   imports: [
     NgForOf,
-    NgOptimizedImage,
-    CurrencyPipe,
     FormsModule,
     AsyncPipe,
     ReactiveFormsModule,
-    LoadingDirective,
     NgIf,
-    DecimalPipe,
-    CartHeaderComponent
+    CartHeaderComponent,
+    SkeletonDirective
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
